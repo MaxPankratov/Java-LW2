@@ -1,38 +1,34 @@
 import java.util.Scanner;
 import java.util.regex.*;
 
-public class Main {
+public class Task_2 {
 
     public static void main(String[] args) {
-        
-        String password = "abc";
-        
+
+        String password;
+
         Pattern truePasswordPattern = Pattern.compile("[a-zA-Z0-9_]{8,}");
-        Matcher truePasswordMatcher = truePasswordPattern.matcher(password);
-        
+
         Pattern uppercasePasswordPattern = Pattern.compile("[A-Z]");
-        Matcher uppercasePasswordMatcher = uppercasePasswordPattern.matcher(password);
-        
+
         Pattern lowercasePasswordPattern = Pattern.compile("[a-z]");
-        Matcher lowerPasswordMatcher = lowercasePasswordPattern.matcher(password);
-        
+
         Pattern digitPasswordPattern = Pattern.compile("[0-9]");
-        Matcher digitPasswordMatcher = digitPasswordPattern.matcher(password);
-        
-        boolean flag = false;
+
+        boolean flag;
 
         do {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Введите пароль: ");
             password = scanner.nextLine();
 
-            if (truePasswordMatcher.matches() && uppercasePasswordMatcher.matches() && lowerPasswordMatcher.matches() && digitPasswordMatcher.matches()) {
+            if (truePasswordPattern.matcher(password).matches() && uppercasePasswordPattern.matcher(password).find() && lowercasePasswordPattern.matcher(password).find() && digitPasswordPattern.matcher(password).find()) {
                 flag = true;
                 System.out.println("Пароль надёжен");
             } else {
                 flag = false;
                 System.out.println("Пароль ненадёжен. Повторите ввод");}
-            } while (flag == false);
-         
+        } while (!flag);
+
     }
 }
